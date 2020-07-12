@@ -3,14 +3,15 @@ import requests
 import operator
 import re
 import nltk
-from flask import Flask, render_template, request
+from rq import Queue
+from rq.job import Job
+from worker import conn
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from stop_words import stops
 from collections import Counter
 from bs4 import BeautifulSoup
-from rq import Queue
-from rq.job import Job
-from worker import conn
+
 
 app = Flask(__name__)
 app.config.from_object(os.environ.get('APP_SETTINGS'))
@@ -35,7 +36,7 @@ def count_and_save_words(url):
         return {"error": errors}
 
     # text processing
-    raw = BeautifulSoup(r.text).get_text()
+    raw = BeautifulSoup(r.text, 'html.parser').get_text()
     nltk.data.path.append('./nltk_data/')  # set the path
     tokens = nltk.word_tokenize(raw)
     text = nltk.Text(tokens)
@@ -56,7 +57,6 @@ def count_and_save_words(url):
             result_all=raw_word_count,
             result_no_stop_words=no_stop_words_count
         )
-        print("RESULT", result)
         db.session.add(result)
         db.session.commit()
         return result.id
@@ -69,16 +69,13 @@ def count_and_save_words(url):
 def index():
     results = {}
     if request.method == "POST":
-        # this import solves a rq bug which currently exists
-        from app import count_and_save_words
-
         # get url that the person has entered
         url = request.form['url']
-        if not url[:8].startswith(('https://', 'http://')):
+        if 'http://' not in url[:7]:
             url = 'http://' + url
         job = q.enqueue_call(
-            func="app.count_and_save_words", args=(url,), result_ttl=5000
-            )
+            func=count_and_save_words, args=(url,), result_ttl=5000
+        )
         print(job.get_id())
 
     return render_template('index.html', results=results)
@@ -90,7 +87,13 @@ def get_results(job_key):
     job = Job.fetch(job_key, connection=conn)
 
     if job.is_finished:
-        return str(job.result), 200
+        result = Result.query.filter_by(id=job.result).first()
+        results = sorted(
+            result.result_no_stop_words.items(),
+            key=operator.itemgetter(1),
+            reverse=True
+        )[:10]
+        return jsonify(results)
     else:
         return "Nay!", 202
 
