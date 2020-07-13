@@ -29,7 +29,7 @@ def count_and_save_words(url):
         return {"error": errors}
 
     # text processing
-    raw = BeautifulSoup(r.text).get_text()
+    raw = BeautifulSoup(r.text, features="html.parser").get_text()
     nltk.data.path.append('./nltk_data/')  # set the path
     tokens = nltk.word_tokenize(raw)
     text = nltk.Text(tokens)
@@ -64,6 +64,7 @@ def count_and_save_words(url):
 R=0
 app = Flask(__name__)
 app.config.from_object(os.environ.get('APP_SETTINGS'))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
@@ -110,7 +111,7 @@ def get_results(job_key):
 
     job = Job.fetch(job_key, connection=conn)
     
-    print("THIS IS CONN=>=>=>", conn)
+    print("THIS IS CONNECTION", conn)
     if job.is_finished:
         print(R)
         result = Result.query.filter_by(id=job.result).first()
