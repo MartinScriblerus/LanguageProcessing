@@ -90,14 +90,23 @@
               .data(word)
               .enter()
               .append('div')
-              .style('width', function() {
+              
+              .style(     
+                'width', function() {
                 return (value * 3) + 'px';
               })
               .text(function(d){
+
                 return key;
               });
           }
         }, true);
+        
+        d3.selectAll('rect')
+        .attr('x', function(d, i) {
+          return i * 400;
+        });
+        
       }
      };
   }]);

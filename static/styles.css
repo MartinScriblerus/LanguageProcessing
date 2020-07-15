@@ -1,3 +1,31 @@
+body {
+  background-color: #00838F;
+}
+
+.container {
+  max-width: 1000px;
+  background-color: #00838F;
+}
+
+.btn {
+  width: 15vw;
+  background-color: pink;
+}
+
+.mdc-button {
+  width: 15vw;
+  background-color: pink;
+}
+
+.mdc-button-ripple {
+  width: 15vw;
+  background-color: #00838F;
+}
+
+.mdc-button__label {
+  color: #E0F7FA;
+}
+
 #chart {
   overflow-y: scroll;
 }
@@ -8,21 +36,29 @@
 }
 
 #chart div {
-  width: 100;
+  width: 0;
   transition: all 1s ease-out;
   -moz-transition: all 1s ease-out;
   -webkit-transition: all 1s ease-out;
 }
 
 #chart div {
-  height: 30px;
-  font: 15px;
-  background-color: #006dcc;
+  height: 45px;
+  font-size: 25px;
+  background-color: #B2EBF2;
   text-align: right;
   padding: 3px;
-  color: white;
+  color: #00838F;
   box-shadow: 2px 2px 2px gray;
-
 }
 
 
+:root {
+  --mdc-theme-primary: #18FFFF;
+  --mdc-theme-primary-bg: #00838F;
+ 
+  --mdc-theme-secondary: #4dd0e1;
+  --mdc-theme-secondary-bg: #00ACC1;
+  --mdc-theme-on-primary: #E0F7FA;
+  --mdc-theme-on-secondary: #B2EBF2;
+}
