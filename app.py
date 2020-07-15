@@ -41,11 +41,11 @@ def count_and_save_words(url):
     nonPunct = re.compile('.*[A-Za-z].*')
     raw_words = [w for w in text if nonPunct.match(w)]
     raw_word_count = Counter(raw_words)
-    print(raw_words)
+    # print(raw_words)
     # stop words
     no_stop_words = [w for w in raw_words if w.lower() not in stops]
     no_stop_words_count = Counter(no_stop_words)
-    print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
+    # print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
     # save the results
     try:
         result = Result(
@@ -71,7 +71,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 q = Queue(connection=conn)
-print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
+# print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
 
 class Result(db.Model):
     __tablename__ = 'results'

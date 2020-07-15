@@ -5,25 +5,30 @@ body {
 .container {
   max-width: 1000px;
   background-color: #00838F;
+  font-size: 22px;
 }
 
-.btn {
-  width: 15vw;
-  background-color: pink;
-}
 
 .mdc-button {
   width: 15vw;
-  background-color: pink;
+  background-color: #18FFFF;
+  color: #18FFFF;
+  box-shadow: 2px 2px 2px gray;
 }
 
 .mdc-button-ripple {
   width: 15vw;
-  background-color: #00838F;
+  background-color: #18FFFF;
 }
 
 .mdc-button__label {
   color: #E0F7FA;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn {
+  background-color: #18FFFF;
 }
 
 #chart {
@@ -52,13 +57,36 @@ body {
   box-shadow: 2px 2px 2px gray;
 }
 
-
-:root {
-  --mdc-theme-primary: #18FFFF;
-  --mdc-theme-primary-bg: #00838F;
- 
-  --mdc-theme-secondary: #4dd0e1;
-  --mdc-theme-secondary-bg: #00ACC1;
-  --mdc-theme-on-primary: #E0F7FA;
-  --mdc-theme-on-secondary: #B2EBF2;
+.form-control {
+  background-color: #B2EBF2;
+  color: #008;
+  font-size: 20px;
+  font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif
 }
+
+
+.--mdc-theme-primary {
+  color: #02eeae;
+  background-color: #0c0d17; 
+} 
+
+.--mdc-theme-on-primary {
+  background-color: #ececec;
+}
+
+.--mdc-theme-primary-bg {
+  background-color: #0c0d17;
+} 
+
+.--mdc-theme-secondary {
+  background-color: #0c0d17 
+} 
+
+.--mdc-theme-on-secondary {
+  background-color: #ff5655;
+}
+
+.--mdc-theme-secondary-bg {
+  background-color: #c39fef;
+} 
+
