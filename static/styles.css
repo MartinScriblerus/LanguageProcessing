@@ -59,6 +59,7 @@ body {
 
 .form-control {
   background-color: #ececec;
+  margin-bottom: 2vh;
   color: #0c0d17;
   font-size: 20px;
   width: 100%;
