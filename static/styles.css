@@ -3,40 +3,40 @@ body {
 }
 
 .container {
-  max-width: 1000px;
-  background-color: #00838F;
+  /* max-width: 1000px; */
+  background-color: #ececec;
   font-size: 22px;
 }
 
+#DescriptionDiv {
+  float: left;
+  max-width: 60%;
+}
 
 .mdc-button {
   width: 15vw;
-  background-color: #18FFFF;
-  color: #18FFFF;
-  box-shadow: 2px 2px 2px gray;
+  background-color: #ecc4b6;
+  color: #ecc4b6;
+
+  float: right;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
 }
 
 .mdc-button-ripple {
   width: 15vw;
-  background-color: #18FFFF;
+  background: #62c5bd;
+  background-color: #62c5bd;
+
 }
 
-.mdc-button__label {
-  color: #E0F7FA;
-  font-size: 20px;
-  text-align: center;
-}
 
-.btn {
-  background-color: #18FFFF;
-}
 
 #chart {
   overflow-y: scroll;
-}
-
-#chart {
-  background: #eee;
+  background: #62c5bd;
   padding: 3px;
 }
 
@@ -50,43 +50,127 @@ body {
 #chart div {
   height: 45px;
   font-size: 25px;
-  background-color: #B2EBF2;
+  background-color: #ececec;
   text-align: right;
   padding: 3px;
-  color: #00838F;
+  color: #62c5bd;
   box-shadow: 2px 2px 2px gray;
 }
 
 .form-control {
-  background-color: #B2EBF2;
-  color: #008;
+  background-color: #ececec;
+  color: #0c0d17;
   font-size: 20px;
+  width: 100%;
+  padding-left: 10px;
   font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
+.mdc-card {
+  padding-right: 3%;
+  padding-left: 3%;
+  margin-right: 3%;
+  margin-left: 3%;
+  padding-top:1vh;
+  padding-bottom: 2vh;
+  background-color: #09385E;
+  margin-top: 10vh;
+  box-shadow: 10px 10px 10px gray;
+}
+
+.mdc-card #text-data {
+
+  margin-left: 20%;
+ 
+}
+
+h1 {
+  color: #121c1b;
+  font-size: 32px;
+  font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  box-shadow: 2px 2px 2px gray;
+  background-color: lightblue;
+  text-align: center;
+  margin-top: 5vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  margin-right: 5%;
+  margin-left: 5%;
+  font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; 
+}
+
+h2 {
+  color: #121c1b;
+  font-size: 42px;
+  font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  box-shadow: 20px 20px 20px gray;
+}
+
+h4 {
+  color: #ececec;
+  font-size: 18px;
+}
+
+.table thead th  {
+  font-size: 20px;
+}
 
 .--mdc-theme-primary {
-  color: #02eeae;
-  background-color: #0c0d17; 
+  color: #2b1b16;
+  background-color: #213AA6; 
 } 
 
 .--mdc-theme-on-primary {
-  background-color: #ececec;
+  background-color: #ecc4b6;
 }
 
 .--mdc-theme-primary-bg {
-  background-color: #0c0d17;
+  background-color: #62c5bd; 
 } 
 
 .--mdc-theme-secondary {
-  background-color: #0c0d17 
+  background-color: #2b1b16 
 } 
 
-.--mdc-theme-on-secondary {
-  background-color: #ff5655;
-}
+/* .--mdc-theme-on-secondary {
+  background-color: #ececec;
+} */
 
 .--mdc-theme-secondary-bg {
-  background-color: #c39fef;
+  background-color: #ecc4b6;
 } 
+
+.mdc-button:not(.mdc-button--outlined) {
+  background-color: #ecc4b6;
+
+  
+}
+
+.mdc-button__label {
+  color: #121c1b;
+  font-size: 20px;
+  text-align: center;
+} 
+
+.mdc-button__label:hover {
+  color: #ecc4b6;
+  background-color: #ecc4b6;
+} 
+
+.mdc-button:not(.mdc-button--outlined):hover {
+  background-color: #62c5bd;
+  color: #ecc4b6;
+}
+
+.form-control {
+  width: 100%;
+  box-shadow: 2px 2px 2px gray;
+}
+.form-control::placeholder {
+  font-size: 18px;
+}
+.form-control:invalid {
+  background-image: none;
+  width: 100%
+}
 

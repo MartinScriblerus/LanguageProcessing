@@ -11,40 +11,44 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../static/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 
     <style>
       .container {
-        max-width: 1000px;
+        max-width: 1200px;
       }
     </style>
 
   </head>
-    <body ng-controller="WordcountController">
+    <body ng-controller="WordcountController" class="--mdc-theme-primary-bg">
       <div class="container --mdc-theme-primary-bg">
         <div class="row">
-          <div id="titel" class="col-sm-5 col-sm-offset-1">
-            <h1>Wordcount 3000</h1>
+          <div class="mdc-card col-sm-5">
+            <h1>Enter URL</h1>
             <br>
             <form role="form" ng-submit="getResults()">
               <div class="form-group ">
                
 
-                <input type="text" name="url" class="form-control" id="url-box" placeholder="Enter URL..." style="max-width: 300px;" ng-model="url" required>
+                <input type="text" name="url" class="form-control" id="url-box" placeholder="ex: https://www.nytimes.com/" ng-model="url" required>
 
                 
               </div>
-              
+              <div id="DescriptionDiv">
+                <h4>Type in any URL and find NLP text data below.</h4>
+              </div>
               <button type="submit" class="btn mdc-button">
                 <div class="mdc-button__ripple "></div>
                 <span class="mdc-button__label ">Submit</span>
               </button>
             </form>
           </div>
-          <div class="col-sm-5 col-sm-offset-1">
-            <h2>Frequencies</h2>
+          <div id="text-data" class="mdc-card col-sm-5 col-sm-offset-1">
+            <h1 >Text Data</h1>
             <br>
         
             <div id="results">

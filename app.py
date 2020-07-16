@@ -17,7 +17,32 @@ from psycopg2.extensions import register_adapter
 
 register_adapter(dict, JSON)
 
+app = Flask(__name__)
+app.config.from_object(os.environ.get('APP_SETTINGS'))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db = SQLAlchemy(app)
 
+q = Queue(connection=conn)
+
+class Result(db.Model):
+    __tablename__ = 'results'
+
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.String())
+    result_all = db.Column(JSON)
+    result_no_stop_words = db.Column(JSON)
+
+    def __init__(self, url, result_all, result_no_stop_words):
+        
+        self.url = url
+        self.result_all = result_all
+        self.result_no_stop_words = result_no_stop_words
+
+    def __repr__(self):
+        return '<id {}>'.format(self.id)
+
+print(Result)
 
 def count_and_save_words(url):
     
@@ -41,7 +66,7 @@ def count_and_save_words(url):
     nonPunct = re.compile('.*[A-Za-z].*')
     raw_words = [w for w in text if nonPunct.match(w)]
     raw_word_count = Counter(raw_words)
-    # print(raw_words)
+    print(raw_words)
     # stop words
     no_stop_words = [w for w in raw_words if w.lower() not in stops]
     no_stop_words_count = Counter(no_stop_words)
@@ -54,41 +79,16 @@ def count_and_save_words(url):
             result_no_stop_words=no_stop_words_count
         )
         print(result)
-        print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
+        # print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
         db.session.add(result)
         db.session.commit()
+        print(db)
         return result.id
     except:
         errors.append("Unable to add item to database.")
         return {"error": errors}
 
 
-
-app = Flask(__name__)
-app.config.from_object(os.environ.get('APP_SETTINGS'))
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
-
-q = Queue(connection=conn)
-# print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
-
-class Result(db.Model):
-    __tablename__ = 'results'
-
-    id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String())
-    result_all = db.Column(JSON)
-    result_no_stop_words = db.Column(JSON)
-
-    def __init__(self, url, result_all, result_no_stop_words):
-        
-        self.url = url
-        self.result_all = result_all
-        self.result_no_stop_words = result_no_stop_words
-
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
 
 
 
@@ -121,7 +121,7 @@ def get_results(job_key):
 
     job = Job.fetch(job_key, connection=conn)
     
-    # print("THIS IS CONNECTION", conn)
+
     if job.is_finished:
       
         result = Result.query.filter_by(id=job.result).first()

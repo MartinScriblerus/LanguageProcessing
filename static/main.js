@@ -83,30 +83,21 @@
           for (var word in data) {
             var key = data[word][0];
             var value = data[word][1];
-            console.log(d3);
+            // console.log(d3);
             d3.select('#chart')
               .append('div')
               .selectAll('div')
               .data(word)
               .enter()
               .append('div')
-              
-              .style(     
-                'width', function() {
+              .style('width', function() {
                 return (value * 3) + 'px';
               })
               .text(function(d){
-
                 return key;
               });
           }
         }, true);
-        
-        d3.selectAll('rect')
-        .attr('x', function(d, i) {
-          return i * 400;
-        });
-        
       }
      };
   }]);
