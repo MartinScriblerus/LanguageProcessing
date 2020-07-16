@@ -58,9 +58,12 @@ def count_and_save_words(url):
 
     # text processing
     raw = BeautifulSoup(r.text, features="html.parser").get_text()
+    raw_noheaders= [raw.extract() for raw in raw.findAll(['script', 'style'])]
+
     nltk.data.path.append('./nltk_data/')  # set the path
-    tokens = nltk.word_tokenize(raw)
+    tokens = nltk.word_tokenize(raw_noheaders)
     text = nltk.Text(tokens)
+    print(text)
 
     # remove punctuation, count raw words
     nonPunct = re.compile('.*[A-Za-z].*')
