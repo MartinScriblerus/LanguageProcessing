@@ -50,10 +50,10 @@ body {
 #chart div {
   height: 45px;
   font-size: 25px;
-  background-color: #ececec;
+  background-color: #09385e;
   text-align: right;
   padding: 3px;
-  color: #62c5bd;
+  color: #ecc4b6;
   box-shadow: 2px 2px 2px gray;
 }
 
@@ -114,6 +114,12 @@ h4 {
 .table thead th  {
   font-size: 20px;
 }
+
+.table td {
+  color: #ecc4b6;
+}
+
+.table>tbody>tr>td 
 
 .--mdc-theme-primary {
   color: #2b1b16;
