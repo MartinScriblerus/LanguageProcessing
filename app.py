@@ -58,10 +58,9 @@ def count_and_save_words(url):
 
     # text processing
     raw = BeautifulSoup(r.text, features="html.parser").get_text()
-    raw_noheaders= [raw.extract() for raw in raw.findAll(['script', 'style'])]
-
+    
     nltk.data.path.append('./nltk_data/')  # set the path
-    tokens = nltk.word_tokenize(raw_noheaders)
+    tokens = nltk.word_tokenize(raw)
     text = nltk.Text(tokens)
     print(text)
 
@@ -81,7 +80,7 @@ def count_and_save_words(url):
             result_all=raw_word_count,
             result_no_stop_words=no_stop_words_count
         )
-        print(result)
+        print("RESULT: ", result)
         # print("HERE IS DB JUST PRIOR TO INIT SESSION", db)
         db.session.add(result)
         db.session.commit()

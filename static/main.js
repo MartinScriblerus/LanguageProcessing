@@ -91,7 +91,7 @@
               .enter()
               .append('div')
               .style('width', function() {
-                return (value * 3) + 'px';
+                return (value * 5) + 'px';
               })
               .text(function(d){
                 return key;
