@@ -40,6 +40,10 @@ body {
   padding: 3px;
 }
 
+#chart:empty {
+  display:none;
+}
+
 #chart div {
   width: 0;
   transition: all 1s ease-out;
@@ -53,7 +57,7 @@ body {
   background-color: #ecc4b6;
   text-align: right;
   padding: 3px;
-  color: #62c5bd;
+  color: #09385E;
   box-shadow: 2px 2px 2px gray;
 }
 
